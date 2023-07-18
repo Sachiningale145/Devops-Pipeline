@@ -1,0 +1,66 @@
+/* Global styles */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+
+/* Header styles */
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+/* Main section styles */
+
+main {
+    padding: 20px;
+}
+
+#services {
+    margin-bottom: 30px;
+}
+
+.service-item {
+    display: inline-block;
+    margin: 10px;
+}
+
+.service-item img {
+    width: 200px;
+    height: 150px;
+}
+
+
+/* Footer styles */
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
