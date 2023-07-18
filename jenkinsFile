@@ -1,0 +1,45 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Clone') {
+      steps {
+        git 'https://github.com/your-github-repo.git'
+      }
+    }
+
+    stage('Build') {
+      steps {
+        sh 'mvn clean package' // Replace with your build command or script
+      }
+    }
+
+    stage('Test') {
+      steps {
+        sh 'mvn test' // Replace with your test command or script
+      }
+    }
+
+    stage('Build Docker Image') {
+      steps {
+        script {
+          def dockerImage = docker.build('your-docker-image:latest', '-f Dockerfile .') // Replace with your Dockerfile path and image name
+          docker.withRegistry('https://your-docker-registry', 'your-docker-credentials') {
+            dockerImage.push() // Push the Docker image to your registry
+          }
+        }
+      }
+    }
+
+    stage('Deploy to Kubernetes') {
+      steps {
+        script {
+          def kubeConfig = readFile('kubeconfig.yaml') // Replace with your Kubernetes cluster configuration file
+          kubeConfig.trim().eachLine {
+            sh "echo ${it} | kubectl apply -f -" // Deploy the Kubernetes resources
+          }
+        }
+      }
+    }
+  }
+}
